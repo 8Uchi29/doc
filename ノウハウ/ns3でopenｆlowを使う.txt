@@ -1,0 +1,81 @@
+http://odamemo.blogspot.jp/2013/10/ns-318.html
+
+2013年10月16日水曜日
+ns-3.18のインストール
+openflowのシミュレーションがしたくてNS3を導入した．
+
+
+
+
+
+1．必要パッケージのインストール
+gcc g++ python mercurial bzr gdb valgrind gsl-bin libgsl0-dev libgsl0ldbl flex bison libfl-dev  tcpdump sqlite sqlite3 libsqlite3-dev libxml2 libxml2-dev  libgtk2.0-0 libgtk2.0-dev vtun lxc uncrustify doxygen graphviz imagemagick texlive texlive-extra-utils texlive-latex-extra python-pygraphviz python-kiwi python-pygoocanvas libgoocanvas-dev libboost-signals-dev libboost-filesystem-dev 
+
+2．ns-3.18のDLと解凍
+wget http://www.nsnam.org/release/ns-allinone-3.18.tar.bz2
+tar xjf ns-allinone-3.18.tar.bz2
+
+3．パスを通す
+export BAKE_HOME=/home/usr/ns-allinone-3.18/bake
+export PATH=$PATH:$BAKE_HOME
+export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
+
+4．モジュールやライブラリのチェック
+ns-allinone-3.18/bakeで 「./bake.py configure -e ns-3.18」を実行
+
+5．ビルド
+ns-allinone-3.18で「./build.py」でビルド
+
+6．実行
+(ns-allinone-3.18/ns-3.18にいる状態で)
+「cp example/tutorial/first.cc scratch/myfirst.cc」を実行し「./waf」でビルド
+「./waf --run myfirst」で実行
+
+これでコンソールに通信ログが出てくればおｋ
+
+ビルド完了したときに出てくるがOpenFlowはビルドされていないから次の手順で導入する
+
+
+a．OpenFlowのビルド
+hg clone http://code.nsnam.org/jpelkey3/openflow
+cd openflow
+./waf configure
+./waf build
+ns-allinone-3.18/ns-3.18に移動
+今回はns-3.18にns-3-dev/を用意し，このディレクトリに先ほど取得したopenflowをコピペした
+./waf configure --enable-examples --enable-tests --with-openflow=ns-3-dev/openflow
+
+
+このとき「NS3 OpenFlow　Integration :enable」となっていればOpenFlowもビルドされるようになる
+
+NS3をビルド
+./waf build
+
+これで「Modules built」にopenflowがいればビルド完了
+
+試しに「./waf --run openflow-switch」を実行するとシミュレーションしてくれて
+.pcapの拡張子を持つファイルがns-3.18に生成されていればおｋ
+ちなみに「./waf --run "openflow-switch -v"」で実行するととコンソールに通信毎のログが吐き出される
+
+
+これでOpenFlowのシミュレーションができる
+GUIを動かしてみたいから今度やってみる…
+
+
+投稿者 おだ 時刻: 23:11
+メールで送信BlogThis!Twitter で共有するFacebook で共有するPinterest に共有
+ラベル: NS3
+0 件のコメント:
+
+コメントを投稿
+
+次の投稿 前の投稿 ホーム
+登録: コメントの投稿 (Atom)
+自己紹介
+
+おだ
+    社会人やってます
+
+詳細プロフィールを表示
+このブログを検索
+	

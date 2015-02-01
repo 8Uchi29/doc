@@ -1,0 +1,25 @@
+switch components
+  - flow tables
+    - match fields 
+      to match against packets. 
+      These consist of the ingress port and packet headers, and optionally 
+      metadata specied by a previous table.
+      
+    - counters     パケットカウンタ
+      to update for matching packets
+      
+    - instructions 
+      to modify the action set or pipeline processing
+    
+    - additional flow Table
+    
+  - group tables    packet lookups, forwarding,
+                           reactively, and proaactively.
+                           
+  - openflow channel  between switch adn controller pathway.
+  
+  - openflow protocol for managed openflow switch
+  - openflow contoroller is add , update, delete flow entries, both reactively and proactively.
+  
+  - 最初のフローテーブルと一致した場合に、追加のフローテーブルが追加されるかもしれない(4.1.1)
+  
