@@ -79,3 +79,6 @@ GUIを動かしてみたいから今度やってみる…
 詳細プロフィールを表示
 このブログを検索
 	
+
+外部のopenflowコントローラとの接続はできない
+http://mailman.isi.edu/pipermail/ns-developers/2011-November/009626.html
